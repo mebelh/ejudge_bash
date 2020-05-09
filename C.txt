@@ -20,25 +20,22 @@ for ((i = 0; i < n; i++)) do
     then
         ((max=array[i]));
         ((indexMax=i));
-    else
-        if [[ ${array[i]} -lt ${min} ]]
-        then
-            min=$array[i];
-            ((indexMin=i));
-        fi
+    fi
+    if [[ ${array[i]} -lt ${min} ]]
+    then
+        ((min=array[i]));
+        ((indexMin=i));
     fi
 done
-
 
 if [[ indexMax -lt indexMin ]]
 then
   grIndex=$indexMin;
-  leIndex=$indexMax
+  ltIndex=$indexMax
 else
   grIndex=$indexMax;
-  leIndex=$indexMin
+  ltIndex=$indexMin
 fi
-
 
 for ((i = 0; i <= ltIndex; i++)) do
   echo ${array[i]};
@@ -48,6 +45,7 @@ done
 for ((i = grIndex - 1; i > ltIndex; i--)) do
   echo ${array[i]};
 done
+
 
 for ((i = grIndex; i < n; i++)) do
   echo ${array[i]};

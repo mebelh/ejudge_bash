@@ -20,24 +20,17 @@ for ((i = 0; i < n; i++)) do
     then
         ((max=array[i]));
         ((indexMax=i));
-    else
-        if [[ ${array[i]} -lt ${min} ]]
-        then
-            min=$array[i];
-            ((indexMin=i));
-        fi
+    fi
+    if [[ ${array[i]} -lt ${min} ]]
+    then
+        ((min=array[i]));
+        ((indexMin=i));
     fi
 done
 
+((array[indexMin]=max))
+((array[indexMax]=min))
+
 for ((i = 0; i < n; i++)) do
-    if [[ i=$indexMax ]]
-    then
-      echo ${max};
-    else
-      if [[ i=$indexMin ]];
-      then
-        echo ${min};
-      else
-        echo ${array[i]};
-      fi;
+  echo ${array[i]};
 done
