@@ -1,0 +1,54 @@
+#!/bin/bash
+
+read n;
+
+array=();
+
+for ((i = 0; i < n; i++)) do
+    read item;
+    array+=($item);
+done
+
+
+max=-10000000000;
+indexMax=-1;
+min=10000000000;
+indexMin=-1;
+
+for ((i = 0; i < n; i++)) do
+    if [[ ${array[i]} -gt ${max} ]]
+    then
+        ((max=array[i]));
+        ((indexMax=i));
+    else
+        if [[ ${array[i]} -lt ${min} ]]
+        then
+            min=$array[i];
+            ((indexMin=i));
+        fi
+    fi
+done
+
+
+if [[ indexMax -lt indexMin ]]
+then
+  grIndex=$indexMin;
+  leIndex=$indexMax
+else
+  grIndex=$indexMax;
+  leIndex=$indexMin
+fi
+
+
+for ((i = 0; i <= ltIndex; i++)) do
+  echo ${array[i]};
+done
+
+
+for ((i = grIndex - 1; i > ltIndex; i--)) do
+  echo ${array[i]};
+done
+
+for ((i = grIndex; i < n; i++)) do
+  echo ${array[i]};
+done
